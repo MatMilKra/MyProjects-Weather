@@ -7,7 +7,6 @@ export const Weather = () => {
     const [longitude, setLongitude] = useState(0);
     const [myobject, setMyobject] = useState({});
     const [correct, setCorrect] = useState(true);
-    const arr = [0, 1, 2, 3, 4, 5, 6, 7];
 
     const fetchData = () => {
         if (isNaN(latitude) || isNaN(longitude) ||
@@ -29,11 +28,15 @@ export const Weather = () => {
     }
 
     const createRow = (i) => {
+        var sunrise = myobject.daily?.sunrise[i].split("T");
+        // console.log(sunrise[1])
+
+        var sunset = myobject.daily?.sunset[i].split("T");
         return (<tr>
-            <td>
-                {myobject.daily?.time[i]}</td><td>{myobject.daily?.temperature_2m_min[i]}</td>
+            <td>{myobject.daily?.time[i]}</td>
+            <td>{myobject.daily?.temperature_2m_min[i]}</td>
             <td>{myobject.daily?.temperature_2m_max[i]}</td>
-            <td>{myobject.daily?.sunrise[i]}</td><td>{myobject.daily?.sunset[i]}</td>
+            <td>{sunrise[1]}</td><td>{sunset[1]}</td>
         </tr>
         )
     }
@@ -70,10 +73,6 @@ export const Weather = () => {
                         </th>
                     </tr>
                     <tbody>
-                        {() => arr.forEach((i) =>
-                            createRow(i)
-                        )
-                        }
                         {createRow(0)} {createRow(1)}{createRow(2)}{createRow(3)}
                         {createRow(4)}{createRow(5)}{createRow(6)}
                     </tbody>
