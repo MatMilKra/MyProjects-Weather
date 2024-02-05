@@ -10,6 +10,7 @@ export const Navbar = () => {
         setLongitude,
         correct,
         setCorrect,
+        myobject,
         setMyobject
     } = useContext(AppContext);
 
@@ -33,7 +34,7 @@ export const Navbar = () => {
     }
 
     return (
-        <div>
+        <div className="Navbar-style">
             <input placeholder={"Latitude"} onChange={(event) => {
                 setLatitude(event.target.value);
             }} />
